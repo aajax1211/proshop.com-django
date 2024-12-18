@@ -1,18 +1,21 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Container } from 'react-bootstrap'
+import HomeScreen from './screens/HomeScreen';
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
 
 function App() {
   return (
-    <div>
+    <Router>
       <Header></Header>
-      <main className="py-5">
+      <main className="py-3">
         <Container>
-        <h1>Welcome</h1>
+          <Route path="/" Component={HomeScreen} exact/>
         </Container>
       </main>
       <Footer></Footer>
-    </div>
+    </Router>
   );
 }
 
