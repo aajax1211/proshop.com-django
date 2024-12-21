@@ -1,12 +1,12 @@
 import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS , PRODUCT_LIST_FAIL } from "../constants/productconstants"
 import axios from "axios"
 
-const listProducts = () => async (dispatch) => {
+ export const listProducts = () => async (dispatch) => {
     try {
         dispatch({
             type: PRODUCT_LIST_REQUEST
         })
-        const response = await axios.get(`/api/products/${id}`)
+        const response = await axios.get(`/api/products/`)
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: response.data
