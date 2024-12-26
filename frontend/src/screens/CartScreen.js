@@ -17,6 +17,13 @@ export default function CartScreen() {
   const cart = useSelector(state => state.cart)
   const {cartItems} = cart
 
+  const total = cartItems.reduce((acc,item) => acc + item.qty *item.price, 0 )
+  
+  let formattedTotal = new Intl.NumberFormat('en-CA', {
+    style: 'currency',
+    currency: 'CAD',
+  }).format(total)
+
   useEffect(()=>{
     if(productId && qty > 0){
       dispatch(addToCart(productId,qty))
@@ -89,7 +96,7 @@ export default function CartScreen() {
         <ListGroup variant="flush">
           <ListGroup.Item>
             <h2>Subtotal({cartItems.reduce((acc,item) => acc + item.qty, 0 )}) items</h2>
-            ${cartItems.reduce((acc,item) => acc + item.qty *item.price, 0 )}
+            {formattedTotal}
           </ListGroup.Item>
 
           <ListGroup.Item>
