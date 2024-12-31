@@ -31,14 +31,14 @@ export default function CartScreen() {
       console.log("Invalid productId  or quanity")
     }
   },[dispatch,productId,qty])
-  console.log(qty)
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCar(id))
   }
 
   const checkOutHandler = () => {
-    navigate('/login?redirect=shipping')
+    
+    navigate('/login?redirect=/shipping')
   }
 
   return <Row>

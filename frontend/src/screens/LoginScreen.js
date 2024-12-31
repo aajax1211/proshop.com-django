@@ -14,12 +14,13 @@ export default function LoginScreen() {
     const navigate = useNavigate()
     const userLogin = useSelector(state => state.userLogin)
     const{error, loading, userInfo} = userLogin
-    const redirect = location.search ? location.search.split('=')[1]: '/'
+    const redirect = location.search ? location.search.split('=')[1]: '/';
     const dispatch = useDispatch()
 
     useEffect(()=>{
         if(userInfo){
             navigate(redirect)
+        
         }
     },[navigate,userInfo, redirect])
 
