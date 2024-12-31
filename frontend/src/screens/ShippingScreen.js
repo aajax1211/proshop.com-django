@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Form, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from "../components/FormContainer";
-import { useLocation, useNavigate } from "react-router-dom";
 import { saveShippingAddress } from "../actions/cartActions";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function ShippingScreen() {
     const location = useLocation()
     const navigate = useNavigate()
     const cart = useSelector(state => state.cart)
-    const {shippingAddress} = cart
-
+    const {shippingAddress = {}} = cart
+    console.log(shippingAddress)
     const dispatch = useDispatch()
-    const [address, setAddress] = useState(shippingAddress.address)
-    const [city, setCity] = useState(shippingAddress.city)
-    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-    const [country, setCountry] = useState(shippingAddress.country)
+    const [address, setAddress] = useState(shippingAddress.address || "")
+    const [city, setCity] = useState(shippingAddress.city || "")
+    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || "")
+    const [country, setCountry] = useState(shippingAddress.country || "")
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
+    React.useEffect(() => {
+        if (!userInfo) {
+            navigate('/login');
+        }
+    }, [navigate, userInfo]);
     
 
     const submitHandler =(e) =>{
@@ -25,6 +34,7 @@ export default function ShippingScreen() {
     }
 
   return <FormContainer>
+    <CheckoutSteps step1={true} step2={true} step3={true}></CheckoutSteps>
     <h1>Shipping</h1>
     <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">

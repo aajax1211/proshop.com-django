@@ -11,27 +11,29 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 
 
+
 function App() {
   return (
-    <Router>
+    
       <div>
       <Header/>
+      
       <main className="py-3">
         <Container>
           <Routes>
-          <Route path="/" Component={HomeScreen} exact/>
-          <Route path="/login" Component={LoginScreen}/>
-          <Route path="/Register" Component={RegisterScreen}/>
-          <Route path="/profile" Component={ProfileScreen}/>
-          <Route path="/shipping" Component={ShippingScreen}/>
-          <Route path="/product/:id" Component={ProductScreen}/>
-          <Route path="/cart/:id?" Component={CartScreen}/>
+          <Route path="/" element={<HomeScreen/>} exact/>
+          <Route path="/login" element={<LoginScreen/>}/>
+          <Route path="/Register" element={<RegisterScreen/>}/>
+          <Route path="/profile" element={<ProfileScreen/>}/>
+          <Route path="/shipping" element={<ShippingScreen/>}/>
+          <Route path="/product/:id" element={<ProductScreen/>}/>
+          <Route path="/cart/:id?" element={<CartScreen/>}/>
           </Routes>
         </Container>
       </main>
       <Footer></Footer>
       </div>
-    </Router>
+    
   );
 }
 

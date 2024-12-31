@@ -19,3 +19,45 @@ h2{
     font-size: 1.4rem;
     padding: 0.5rem 0;
 }
+
+.checkout-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .step {
+    position: relative;
+    text-align: center;
+    margin: 0 1rem;
+  }
+  
+  .step .line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    background-color: lightgray;
+    transform: translateX(-50%);
+    transition: background-color 0.3s ease;
+  }
+  
+  .step.completed .line {
+    background-color: green;
+  }
+  
+  .step.completed .nav-link {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .step .nav-link {
+    padding-bottom: 10px;
+  }
+  
+  .step:last-child .line {
+    width: 50%;
+  }
+  
