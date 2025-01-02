@@ -34,7 +34,7 @@ export default function ShippingScreen() {
     }
 
   return <FormContainer>
-    <CheckoutSteps step1={true} step2={true} step3={true}></CheckoutSteps>
+    <CheckoutSteps step1={true} step2={true} ></CheckoutSteps>
     <h1>Shipping</h1>
     <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
