@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
 import Message from './../components/Message';
 import { addToCart, removeFromCar } from './../actions/cartActions';
+import formatCurrency from "../helpers/formatCurrency";
 
 export default function CartScreen() {
   const {id:productId} = useParams()
@@ -19,10 +20,7 @@ export default function CartScreen() {
 
   const total = cartItems.reduce((acc,item) => acc + item.qty *item.price, 0 )
   
-  let formattedTotal = new Intl.NumberFormat('en-CA', {
-    style: 'currency',
-    currency: 'CAD',
-  }).format(total)
+  let formattedTotal = formatCurrency(total)
 
   useEffect(()=>{
     if(productId && qty > 0){

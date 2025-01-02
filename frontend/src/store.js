@@ -25,10 +25,14 @@ const userInfoFromStorage = localStorage.getItem('userInfo') ?
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? 
       JSON.parse(localStorage.getItem('shippingAddress')) : {};
 
+const paymentMehtodFromStorage = localStorage.getItem('paymentMethod') ? 
+JSON.parse(localStorage.getItem('paymentMethod')) : "";
+
 // Define the initial state
 const initialState = {
   cart: {cartItems : cartItemsFromStorage, 
-    shippingAddress : shippingAddressFromStorage
+    shippingAddress : shippingAddressFromStorage,
+    paymentMethod : paymentMehtodFromStorage,
   },
   userLogin: {userInfo: userInfoFromStorage},
 };

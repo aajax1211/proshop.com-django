@@ -32,7 +32,6 @@ export default function ShippingScreen() {
         dispatch(saveShippingAddress({address, city, postalCode, country}))
         navigate('/payment')
     }
-
   return <FormContainer>
     <CheckoutSteps step1={true} step2={true} ></CheckoutSteps>
     <h1>Shipping</h1>

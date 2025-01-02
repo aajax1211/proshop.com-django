@@ -14,6 +14,7 @@ import { USER_LOGIN_REQUEST,
     USER_UPDATE_PROFILE_FAIL,
     USER_DETAILS_RESET
 } from "../constants/userConstants";
+import { removeItemsFromLocalStorage } from "../helpers/removeItemsFromLocalStorage";
 
 export const login = (email, password) => async(dispatch) =>{
     try {
@@ -48,7 +49,8 @@ export const login = (email, password) => async(dispatch) =>{
 
 
 export const logout = () => (dispatch) => {
-    localStorage.removeItem('userInfo')
+    
+    removeItemsFromLocalStorage(['userInfo'])
     dispatch({type: USER_LOGOUT})
     dispatch({type: USER_DETAILS_RESET})
 }

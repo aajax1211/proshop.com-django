@@ -6,6 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/userActions";
+import { clearCartOnLogOut } from "../actions/cartActions";
 
 
 export default function Header() {
@@ -15,6 +16,7 @@ export default function Header() {
   const dispatch = useDispatch()
   const logoutHandler = () =>{
     dispatch(logout())
+    dispatch(clearCartOnLogOut())
   }
 
   return <div>
