@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('deliveredAt', models.DateTimeField(blank=True, null=True)),
                 ('createdAt', models.DateTimeField(auto_now_add=True)),
                 ('_id', models.AutoField(editable=False, primary_key=True, serialize=False)),
-                ('uder', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('comment', models.TextField(blank=True, null=True)),
                 ('_id', models.AutoField(editable=False, primary_key=True, serialize=False)),
                 ('product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='base.product')),
-                ('uder', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(

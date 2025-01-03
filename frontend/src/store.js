@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import { productListReducers , productDetailsReducers } from './reducers/prodcutRreducers';
 import { cartReducer } from './reducers/cartReducers';
 import { userDetailsReducers, userLoginReducers, userRegisterReducers, userUpdateProfileReducers } from './reducers/userReducers';
+import { orderCreateReducer } from './reducers/orderReducers';
 
 // Combine your reducers here
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducers,
   userDetails: userDetailsReducers,
   userUpdateProfile: userUpdateProfileReducers,
+  orderCreate : orderCreateReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? 

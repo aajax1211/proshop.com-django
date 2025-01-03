@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
 import Message from './../components/Message';
-import { addToCart, removeFromCar } from './../actions/cartActions';
+import { addToCart, removeFromCart } from './../actions/cartActions';
 import formatCurrency from "../helpers/formatCurrency";
 
 export default function CartScreen() {
@@ -31,7 +31,7 @@ export default function CartScreen() {
   },[dispatch,productId,qty])
 
   const removeFromCartHandler = (id) => {
-    dispatch(removeFromCar(id))
+    dispatch(removeFromCart(id))
   }
 
   const checkOutHandler = () => {
@@ -66,7 +66,7 @@ export default function CartScreen() {
                                 value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
 
                                     {
-                                        [...Array(item.countInStock).keys()].map((x)=>(
+                                        [...Array(Math.max(item.countInStock, 0)).keys()].map((x)=>(
                                             <option key={x+1} value={x+1}>
                                                 {x + 1}
                                             </option>

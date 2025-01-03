@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Col, Form, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from "../components/FormContainer";
@@ -18,9 +18,14 @@ export default function PaymentScreen() {
 
     const [paymentMethod, setPaymentMethod] = useState('Paypal')
 
-    if(!shippingAddress.address){
-        navigate('/shipping')
-    }
+    useEffect(() => {
+        if (!shippingAddress.address) {
+          navigate("/shipping");
+        }else if(cart.cartItems.length === 0){
+            navigate('/')
+        }
+      
+    }, [shippingAddress.address, navigate, cart]);
 
     const submitHandler = (e) =>{
         e.preventDefault()

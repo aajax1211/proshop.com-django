@@ -23,8 +23,10 @@ export default function ShippingScreen() {
     React.useEffect(() => {
         if (!userInfo) {
             navigate('/login');
+        } else if(cart.cartItems.length === 0){
+            navigate('/')
         }
-    }, [navigate, userInfo]);
+    }, [navigate, userInfo, cart.cartItems]);
     
 
     const submitHandler =(e) =>{

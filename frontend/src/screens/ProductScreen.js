@@ -26,7 +26,7 @@ export default function ProductScreen() {
     const addToCartHandler = () =>{
         navigate(`/cart/${id}?qty=${qty}`);
     }
-    
+    console.log(product.countInStock)
   return <div>
     <Link to='/' className="btn btn-light my-3"> {"<"} Go Back</Link>
 
@@ -72,7 +72,7 @@ export default function ProductScreen() {
                         Status:
                         </Col>
                         <Col>
-                        {product.countInStock >0 ? 'In Stock': 'Out of Stock'}
+                        {product.countInStock > 0 ? 'In Stock': 'Out of Stock'}
                         </Col>
                     </Row>
                 </ListGroup.Item>
@@ -104,7 +104,7 @@ export default function ProductScreen() {
                     <Button 
                         onClick={addToCartHandler}
                         className="w-100" 
-                        disabled={product.countInStock === 0? true :false} 
+                        disabled={product.countInStock === 0 ? true :false} 
                         type="button"
                     >Add to Cart</Button>
                     

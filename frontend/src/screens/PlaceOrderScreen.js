@@ -1,28 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {Row, Col, ListGroup, Image,Card, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import CheckoutSteps from "../components/CheckoutSteps";
 import Message from './../components/Message';
 import formatCurrency from "../helpers/formatCurrency";
+import { createOrder } from "../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 export default function PlaceOrderScreen() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const orderCreate = useSelector(state => state.orderCreate)
+    const {order, error, success} = orderCreate
+
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
+
   const total = Number(cartItems.reduce((acc,item) => acc + item.qty *item.price, 0 ))
   const totalItems = Number(cartItems.reduce((acc,item) => acc + item.qty, 0 ))
   const shipping = Number(total > 100 ? 0 : 10)
   const tax = Number((0.13) * total)
   const final = Number(total + shipping + tax)
-  let shippingPrice = formatCurrency(shipping)
-  let formattedTotal = formatCurrency(total)
-  let taxPrice = formatCurrency(tax)
-  let finalPrice = formatCurrency(final)
+  const shippingPrice = formatCurrency(shipping)
+  const formattedTotal = formatCurrency(total)
+  const taxPrice = formatCurrency(tax)
+  const finalPrice = formatCurrency(final)
+
+  
+
+  useEffect(()=>{
+    if(!cart.paymentMethod ){
+        navigate('/payment')
+      }else if(!cart.shippingAddress.address){
+        navigate('/shipping')
+      }else if(success){
+        navigate(`/order/${order._id}`)
+        dispatch({type: ORDER_CREATE_RESET})
+    
+    }
+  },[success, navigate, order,cart,dispatch])
 
 
   const placeOrder = () =>{
-    console.log('orderplaced')
+    dispatch(createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice : total,
+        shippingPrice : shipping,
+        taxPrice : tax,
+        finalPrice: final
+    }))
+    
   }
   
   return <div>
@@ -121,6 +152,13 @@ export default function PlaceOrderScreen() {
                         <Col>{finalPrice}</Col>
                     </Row>
                 </ListGroup.Item>
+
+                {error && 
+                <ListGroup.Item>
+                     <Message variant='danger'>
+                        {error}
+                     </Message>
+                </ListGroup.Item>}
 
                 <ListGroup.Item>
                     <Button type="button" 
