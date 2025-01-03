@@ -56,4 +56,5 @@ export const savePaymentMethod = (data) => (dispatch) => {
 export const clearCartOnLogOut = () => (dispatch) => {
     removeItemsFromLocalStorage(['cartItems', 'shippingAddress', 'paymentMethod'])
     dispatch({type: CART_RESET})
+
 }
