@@ -26,7 +26,6 @@ import { USER_LOGIN_REQUEST,
 } from "../constants/userConstants";
 import { removeItemsFromLocalStorage } from "../helpers/removeItemsFromLocalStorage";
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
-import { data } from "react-router-dom";
 
 export const login = (email, password) => async(dispatch) =>{
     try {
