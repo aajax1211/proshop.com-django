@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './../components/Loader';
 import Message from './../components/Message';
-import { listProducts } from "../actions/productActions";
+import { deleteProduct, listProducts } from "../actions/productActions";
 
 
 export default function UserListScreen() {
@@ -17,22 +17,26 @@ export default function UserListScreen() {
     const productList = useSelector(state => state.productList)
     const {loading, error, products} = productList
 
+    const productDelete = useSelector(state => state.productDelete)
+    const {loading:loadingDelete, error: errorDelete, success: successDelete} = productDelete
+
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
 
     useEffect(()=>{
+        
         if(userInfo && userInfo.isAdmin){
             dispatch(listProducts())
         }else{
             navigate('/login')
         }
 
-    },[dispatch, navigate, userInfo, ])
+    },[dispatch, navigate, userInfo,successDelete])
 
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure you want to delete this product?')){
-            
+            dispatch(deleteProduct(id))
         }
         
     }
@@ -42,6 +46,7 @@ export default function UserListScreen() {
     }
 
   return <div>
+    
       <Row className="align-items-center">
         <Col>
         <h1>Products</h1>
@@ -52,6 +57,8 @@ export default function UserListScreen() {
         </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader></Loader>}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       {loading ?(
         <Loader></Loader>
       ): error ? (
