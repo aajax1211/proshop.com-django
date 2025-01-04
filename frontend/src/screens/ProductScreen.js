@@ -26,7 +26,6 @@ export default function ProductScreen() {
     const addToCartHandler = () =>{
         navigate(`/cart/${id}?qty=${qty}`);
     }
-    console.log(product.countInStock)
   return <div>
     <Link to='/' className="btn btn-light my-3"> {"<"} Go Back</Link>
 

@@ -14,6 +14,7 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import { ProtectedRoute } from "./components/protectedRoute";
 import { useSelector } from "react-redux";
 import OrderScreen from "./screens/OrderScreen";
+import UserListScreen from "./screens/UserListScreen";
 
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
           <Route path="/placeorder" element={<PlaceOrderScreen/>}/>
           <Route path="/order/:id" element={<OrderScreen/>}/>
           <Route path="/product/:id" element={<ProductScreen/>}/>
+
+          <Route path="/admin/userlist" element={<UserListScreen/>}/>
           </Route>
           <Route path="/cart/:id?" element={<CartScreen/>}/>
           </Routes>

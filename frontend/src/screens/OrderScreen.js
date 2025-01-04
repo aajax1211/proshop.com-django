@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import {Row, Col, ListGroup, Image,Card, Button} from "react-bootstrap";
+import React, { useEffect} from "react";
+import {  useParams } from "react-router-dom";
+import {Row, Col, ListGroup, Image,Card} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Message from './../components/Message';
@@ -13,7 +13,6 @@ import { ORDER_PAY_RESET } from "../constants/orderConstants";
 export default function OrderScreen() {
     const {id: orderId} = useParams()
     const dispatch = useDispatch()
-    const [sdkReady, setSdkReady] = useState(false)
 
     const orderDetails = useSelector(state => state.orderDetails)
     const {order, error, loading} = orderDetails
@@ -24,7 +23,6 @@ export default function OrderScreen() {
     let total = 0;
     if(!loading && !error){
      total = Number(order.orderItems.reduce((acc,item) => acc + item.qty *item.price, 0 ))
-        
     }
   
     const formattedTotal = formatCurrency(total)
@@ -38,11 +36,14 @@ export default function OrderScreen() {
   },[order, orderId,dispatch, successPay])
 
   const successPaymentHandler = (paymentResult) => {
-    console.log("PayPal SDK Ready:", sdkReady);
-console.log("Order Total:", order.totalPrice);
-console.log("Order Details:", order);
-
     dispatch(payOrder(orderId, paymentResult))
+  }
+
+  if(error || !order){
+    return <div>
+        <h2 variant='danger'>Order not Found</h2>
+        <Link to='/' className="btn btn-light my-3"> {"<"} Go Back</Link>
+    </div>
   }
 
 

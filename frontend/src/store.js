@@ -3,22 +3,27 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 import { productListReducers , productDetailsReducers } from './reducers/prodcutRreducers';
 import { cartReducer } from './reducers/cartReducers';
-import { userDetailsReducers, userLoginReducers, userRegisterReducers, userUpdateProfileReducers } from './reducers/userReducers';
+import { userDetailsReducers, userListReducers, userLoginReducers, userRegisterReducers, userUpdateProfileReducers } from './reducers/userReducers';
 import { listMyOrdersReducer, orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers';
 
 // Combine your reducers here
 const reducer = combineReducers({
   productList: productListReducers,
   productDetails: productDetailsReducers,
+
   cart: cartReducer,
+
   userLogin: userLoginReducers,
   userRegister: userRegisterReducers,
   userDetails: userDetailsReducers,
   userUpdateProfile: userUpdateProfileReducers,
+  userList : userListReducers,
+  
   orderCreate : orderCreateReducer,
   orderDetails : orderDetailsReducer,
   orderPay : orderPayReducer,
-  orderListMy : listMyOrdersReducer
+  orderListMy : listMyOrdersReducer,
+  
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? 

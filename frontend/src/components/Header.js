@@ -14,6 +14,7 @@ export default function Header() {
   const {userInfo} = userLogin
 
   const dispatch = useDispatch()
+  
   const logoutHandler = () =>{
     dispatch(logout())
     dispatch(clearCartOnLogOut())
@@ -50,6 +51,16 @@ export default function Header() {
               </Nav.Link>
               )}
 
+              {userInfo && userInfo.isAdmin  &&(
+                <NavDropdown title='Admin' id="usermenu">
+                <NavDropdown.Item to="/admin/userlist" as={Link}>Users</NavDropdown.Item>
+                <NavDropdown.Item to="/admin/productlist" as={Link}>Products</NavDropdown.Item>
+                <NavDropdown.Item to="/admin/orderlist" as={Link}>Orders</NavDropdown.Item>
+                
+
+          
+              </NavDropdown>
+              )}
               
             
           </Nav>
