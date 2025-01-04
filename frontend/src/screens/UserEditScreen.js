@@ -40,7 +40,7 @@ export default function UserEditScreen() {
                 }
             }
             
-        },[userId, dispatch,user._id,user.name,user.email,user.isAdmin,updateSuccess])
+        },[userId,navigate, dispatch,user._id,user.name,user.email,user.isAdmin,updateSuccess])
     
         const submitHandler = (e) =>{
             e.preventDefault();
