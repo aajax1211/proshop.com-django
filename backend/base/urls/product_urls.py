@@ -4,8 +4,11 @@ from base.views import product_views as views
 
 
 urlpatterns = [
-    path('create/',views.createProduct, name = "product-create"),
+    
     path('',views.getProducts, name = "products"),
+     path('upload/',views.uploadImage, name = "image-upload"),
+    path('create/',views.createProduct, name = "product-create"),
+   
     path('<str:pk>/',views.getProduct, name = "product"),
     path('update/<str:pk>/',views.updateProduct, name = "product-update"),
     
