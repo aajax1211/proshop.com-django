@@ -66,7 +66,7 @@ def getMyOrders(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def getOrderBtId(request,pk):
+def getOrderById(request,pk):
     
     user = request.user
     try: 

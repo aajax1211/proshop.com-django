@@ -71,7 +71,7 @@ export default function UserListScreen() {
                                 <i className="fas fa-check" style={{color: 'red'}}></i>
                             )}</td>
                             <td>
-                                <Button as={Link} to={`/admin/user/${user._id}`} variant='light' className="btn-sm">
+                                <Button as={Link} to={`/admin/user/${user._id}/edit`} variant='light' className="btn-sm">
                                     <i className="fas fa-edit"></i>
                                 </Button>
 
