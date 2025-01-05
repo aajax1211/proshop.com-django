@@ -6,17 +6,18 @@ import Loader from './../components/Loader';
 import Message from './../components/Message';
 import { createProduct, deleteProduct, listProducts } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../constants/productconstants";
+import Paginate from "../components/Paginate";
 
 
 export default function UserListScreen() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const location = useLocation()
     
 
     const productList = useSelector(state => state.productList)
-    const {loading, error, products} = productList
+    const {loading, error, products, pages , page} = productList
 
     const productDelete = useSelector(state => state.productDelete)
     const {loading:loadingDelete, error: errorDelete, success: successDelete} = productDelete
@@ -28,6 +29,8 @@ export default function UserListScreen() {
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
+    const keyword = new URLSearchParams(location.search).get("keyword") || "";
+    const currentPage = new URLSearchParams(location.search).get("page") || 1
     useEffect(()=>{
         dispatch({type: PRODUCT_CREATE_RESET})
         
@@ -38,10 +41,11 @@ export default function UserListScreen() {
         if(successCreate){
             navigate(`/admin/product/${createdProduct._id}/edit`)
         }else {
-            dispatch(listProducts())
+            
+            dispatch(listProducts(keyword,currentPage))
         }
 
-    },[dispatch, navigate, successCreate, userInfo.isAdmin, successDelete,])
+    },[dispatch, navigate, successCreate, userInfo.isAdmin, successDelete, currentPage])
 
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure you want to delete this product?')){
@@ -115,5 +119,6 @@ export default function UserListScreen() {
             </tbody>
         </Table>
       )}
+      <Paginate page={page} pages={pages} isAdmin={true}></Paginate>
   </div>;
 }

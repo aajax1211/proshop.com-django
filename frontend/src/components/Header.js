@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/userActions";
 import { clearCartOnLogOut } from "../actions/cartActions";
+import SearchBox from "./SearchBox";
 
 
 export default function Header() {
@@ -29,6 +30,7 @@ export default function Header() {
        
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
+          <SearchBox></SearchBox>
           <Nav
             className="mr-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}

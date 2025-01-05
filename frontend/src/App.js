@@ -35,14 +35,15 @@ function App() {
           <Route path="/" element={<HomeScreen/>} exact/>
           <Route path="/login" element={<LoginScreen/>}/>
           <Route path="/Register" element={<RegisterScreen/>}/>
-
+          <Route path="/product/:id" element={<ProductScreen/>}/>
+          
           <Route element={<ProtectedRoute userInfo={userInfo} />}>
           <Route path="/profile" element={<ProfileScreen/>}/>
           <Route path="/shipping" element={<ShippingScreen/>}/>
           <Route path="/payment" element={<PaymentScreen/>}/>
           <Route path="/placeorder" element={<PlaceOrderScreen/>}/>
           <Route path="/order/:id" element={<OrderScreen/>}/>
-          <Route path="/product/:id" element={<ProductScreen/>}/>
+          
           
 
           <Route path="/admin/userlist" element={<UserListScreen/>}/>
