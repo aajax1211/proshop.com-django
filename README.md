@@ -1,7 +1,5 @@
 # ProShop E-Commerce Platform
 
-![ProShop Logo](https://via.placeholder.com/150x50)
-
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
