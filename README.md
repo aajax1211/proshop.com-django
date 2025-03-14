@@ -221,7 +221,7 @@ JWT_REFRESH_TOKEN_LIFETIME=days=1
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/proshop.git
+   git clone <project URL>
    cd proshop
    ```
 
@@ -320,8 +320,8 @@ JWT_REFRESH_TOKEN_LIFETIME=days=1
          'default': {
              'ENGINE': 'django.db.backends.postgresql',
              'NAME': "proshop",
-             'USER': "AjitB",
-             'PASSWORD': "Ajit1997",
+             'USER': "name",
+             'PASSWORD': "password",
              'HOST': "proshop-identifier.crgayasoedj4.us-east-2.rds.amazonaws.com",
              'PORT': "5432",
          }
