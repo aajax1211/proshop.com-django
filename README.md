@@ -67,6 +67,7 @@ The platform is designed with scalability and performance in mind, utilizing AWS
 
 The ProShop platform follows a modern client-server architecture: 
 
+```plaintext
 ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
 │   Frontend      │◄────►│  Django REST    │◄────►│  PostgreSQL      │
 │   (React)       │      │  API Backend    │      │  Database        │
@@ -77,7 +78,7 @@ The ProShop platform follows a modern client-server architecture:
 │ AWS S3 (Static) │      │ AWS RDS (DB)    │      │ AWS Lambda      │
 │ AWS EC2 (Deploy)│      │ AWS SQS (Queue) │      │ AWS SES (Email) │
 └─────────────────┘      └─────────────────┘      └─────────────────┘
-
+```
 
 
 - **API-First Design**: Clean separation between frontend and backend
