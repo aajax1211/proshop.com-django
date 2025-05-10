@@ -76,7 +76,7 @@ The ProShop platform follows a modern client-server architecture:
         ▼                        ▼                         ▼
 ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
 │ AWS S3 (Static) │      │ AWS RDS (DB)    │      │ AWS Lambda      │
-│ AWS EC2 (Deploy)│      │ AWS SQS (Queue) │      │ AWS SES (Email) │
+│ AWS EC2 (Deploy)│      │ AWS SQS (Queue) │      │                 │
 └─────────────────┘      └─────────────────┘      └─────────────────┘
 ```
 
